@@ -1,5 +1,8 @@
 package com.zahar.soundsofnature.objects;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -10,6 +13,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.zahar.soundsofnature.R;
+import com.zahar.soundsofnature.activities.MainActivity;
+import com.zahar.soundsofnature.activities.QuizTransportsActivity;
+import com.zahar.soundsofnature.activities.WinActivity;
 import com.zahar.soundsofnature.entities.SoundMakerEntity;
 import com.zahar.soundsofnature.enums.SoundMakerEntityEnum;
 
@@ -177,5 +184,36 @@ public class Squad {
         Random ran = new Random();
         int random = ran.nextInt(maxNumber - minNumber + 1) + minNumber;
         return random;
+    }
+
+    /**
+     * returns dialogue window
+     * @param appCompatActivity
+     */
+    public static void getDialogWinWindow(final AppCompatActivity appCompatActivity){
+        AlertDialog.Builder builder = new AlertDialog.Builder(appCompatActivity);
+        builder.setTitle(YOU_WIN_MESSAGE)
+                .setIcon(R.drawable.logo)
+                .setCancelable(false)
+                .setNegativeButton(OK_BUTTON_MESSAGE,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                Intent homeIntent = new Intent(appCompatActivity, WinActivity.class);
+                                appCompatActivity.startActivity(homeIntent);
+                                appCompatActivity.finish();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    /**
+     * returns main activity
+     */
+    public static void returnMainActivity(final AppCompatActivity appCompatActivity){
+        Intent homeIntent = new Intent(appCompatActivity, MainActivity.class);
+        appCompatActivity.startActivity(homeIntent);
+        appCompatActivity.finish();
     }
 }

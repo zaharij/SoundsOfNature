@@ -55,8 +55,6 @@ public class ListeningTransportsActivity extends AppCompatActivity {
      */
     public void backClick(View view){
         Squad.stopSound();
-        Intent homeIntent = new Intent(ListeningTransportsActivity.this, MainActivity.class);
-        startActivity(homeIntent);
-        finish();
+        Squad.returnMainActivity(ListeningTransportsActivity.this);
     }
 }

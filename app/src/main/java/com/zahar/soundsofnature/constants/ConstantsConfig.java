@@ -92,4 +92,9 @@ public class ConstantsConfig {
 
     public final static String RIGHT_MESSAGE = "Right!";
     public final static String NOT_RIGHT_MESSAGE = "No, this is ";
+
+    //DialogScreen constants
+
+    public final static String YOU_WIN_MESSAGE = "You win!";
+    public final static String OK_BUTTON_MESSAGE = "OK";
 }

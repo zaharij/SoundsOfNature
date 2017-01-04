@@ -1,5 +1,7 @@
 package com.zahar.soundsofnature.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -62,9 +64,7 @@ public class QuizTransportsActivity extends AppCompatActivity {
                         textView.setTextColor(Color.GREEN);
                         textView.setText(RIGHT_MESSAGE);
                     } else {
-                        Intent homeIntent = new Intent(QuizTransportsActivity.this, WinActivity.class);
-                        startActivity(homeIntent);
-                        finish();
+                        Squad.getDialogWinWindow(QuizTransportsActivity.this);
                     }
                 } else {
                     quiz.isVin(sharedPreferences, SoundMakerEntityEnum.TRANSPORTS, false);
@@ -76,6 +76,10 @@ public class QuizTransportsActivity extends AppCompatActivity {
         startQuiz(entityOnClickListener);
     }
 
+    /**
+     * starts quiz
+     * @param entityOnClickListener
+     */
     private void startQuiz(View.OnClickListener entityOnClickListener) {
         quiz.putRandomImages(this, entityOnClickListener, gameBoard, sharedPreferences, SoundMakerEntityEnum.TRANSPORTS);
         quiz.startSound(this);
@@ -87,9 +91,7 @@ public class QuizTransportsActivity extends AppCompatActivity {
      */
     public void backClick(View view){
         Squad.stopSound();
-        Intent homeIntent = new Intent(QuizTransportsActivity.this, MainActivity.class);
-        startActivity(homeIntent);
-        finish();
+        Squad.returnMainActivity(QuizTransportsActivity.this);
     }
 
     /**
