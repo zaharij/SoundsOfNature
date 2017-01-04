@@ -199,7 +199,9 @@ public class Squad {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
-                                returnMainActivity(appCompatActivity);
+                                Intent homeIntent = new Intent(appCompatActivity, WinActivity.class);
+                                appCompatActivity.startActivity(homeIntent);
+                                appCompatActivity.finish();
                             }
                         });
         AlertDialog alert = builder.create();
