@@ -1,5 +1,7 @@
 package com.zahar.soundsofnature.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -66,8 +68,18 @@ public class QuizAnimalsActivity extends AppCompatActivity {
                     }
                 } else {
                     quiz.isVin(sharedPreferences, SoundMakerEntityEnum.ANIMALS, false);
-                    textView.setTextColor(Color.RED);
-                    textView.setText(NOT_RIGHT_MESSAGE + "\n" + quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getName());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(QuizAnimalsActivity.this);
+                    builder.setTitle(THATS_RIGHT_MESSAGE)
+                            .setIcon(quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getViewId())
+                            .setCancelable(false)
+                            .setNegativeButton(OK_BUTTON_MESSAGE,
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
             }
         };

@@ -97,4 +97,5 @@ public class ConstantsConfig {
 
     public final static String YOU_WIN_MESSAGE = "You win!";
     public final static String OK_BUTTON_MESSAGE = "OK";
+    public final static String THATS_RIGHT_MESSAGE = "!!!";
 }
