@@ -1,6 +1,7 @@
 package com.zahar.soundsofnature.enums;
 
-/**
+/** SoundMakerEntityEnum
+ * Entity enum
  * Created by Zakhar on 03.01.2017.
  */
 

@@ -1,6 +1,7 @@
 package com.zahar.soundsofnature.entities;
 
-/**
+/** Animal
+ * Entity, which describes the animal
  * Created by Zakhar on 01.01.2017.
  */
 

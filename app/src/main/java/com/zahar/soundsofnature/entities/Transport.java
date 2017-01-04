@@ -1,6 +1,7 @@
 package com.zahar.soundsofnature.entities;
 
-/**
+/** Transport
+ * Entity, which describes the transport
  * Created by Zakhar on 01.01.2017.
  */
 

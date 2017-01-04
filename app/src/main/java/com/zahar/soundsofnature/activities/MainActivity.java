@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         view.setBackgroundColor(Color.parseColor(MAIN_SCREEN_BACKGROUND_COLOR));
 
         listeningBtn = (ImageButton) findViewById(R.id.imageButtonListening);
+        listeningBtn.setBackgroundColor(Color.TRANSPARENT);
         quizBtn = (ImageButton) findViewById(R.id.imageButtonQuiz);
+        quizBtn.setBackgroundColor(Color.TRANSPARENT);
 
         listeningBtn.setOnClickListener(new View.OnClickListener() {
             @Override

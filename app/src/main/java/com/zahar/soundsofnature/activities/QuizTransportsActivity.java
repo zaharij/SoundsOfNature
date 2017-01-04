@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class QuizTransportsActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SaveGameHelper saveGameHelper;
     private SoundMakerEntityEnum soundMakerEntityEnum;
+    private Button backBtn, soundBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,14 @@ public class QuizTransportsActivity extends AppCompatActivity {
 
         gameBoard = (RelativeLayout) findViewById(R.id.activity_quiz_transports);
         textView = (TextView) findViewById(R.id.textView);
+
+        backBtn = (Button) findViewById(R.id.buttonBack);
+        backBtn.setBackgroundColor(Color.parseColor(BACK_BTN_COLOR));
+        backBtn.setTextColor(Color.WHITE);
+
+        soundBtn = (Button) findViewById(R.id.buttonRepeat);
+        soundBtn.setBackgroundColor(Color.parseColor(BACK_BTN_COLOR));
+        soundBtn.setTextColor(Color.WHITE);
 
         textView.setTextSize(TEXT_SIZE_DEFAULT);
 
@@ -59,7 +69,7 @@ public class QuizTransportsActivity extends AppCompatActivity {
                 } else {
                     quiz.isVin(sharedPreferences, SoundMakerEntityEnum.TRANSPORTS, false);
                     textView.setTextColor(Color.RED);
-                    textView.setText(NOT_RIGHT_MESSAGE + "/n" + quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getName());
+                    textView.setText(NOT_RIGHT_MESSAGE + "\n" + quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getName());
                 }
             }
         };
@@ -71,6 +81,10 @@ public class QuizTransportsActivity extends AppCompatActivity {
         quiz.startSound(this);
     }
 
+    /**
+     * returns to main activity
+     * @param view
+     */
     public void backClick(View view){
         Squad.stopSound();
         Intent homeIntent = new Intent(QuizTransportsActivity.this, MainActivity.class);
@@ -78,6 +92,10 @@ public class QuizTransportsActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * repeats the sound
+     * @param view
+     */
     public void repeatClick(View view){
         quiz.startSound(this);
     }

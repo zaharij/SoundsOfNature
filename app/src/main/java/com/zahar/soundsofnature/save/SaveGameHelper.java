@@ -5,7 +5,8 @@ import android.content.SharedPreferences;
 import com.zahar.soundsofnature.enums.SoundMakerEntityEnum;
 import static com.zahar.soundsofnature.constants.ConstantsConfig.*;
 
-/**
+/** SaveGameHelper
+ * implements save/load methods, using SharePreferences (like dao)
  * Created by Zakhar on 04.01.2017.
  */
 
@@ -15,6 +16,11 @@ public class SaveGameHelper implements  SaveGameHelperInt{
     private final int START_WIN_COUNT_NUMBER = 0;
 
 
+    /**
+     * saves the number of pictures to load to quizScreen
+     * @param sharedPreferences
+     * @param soundMakerEntityEnum - which entity upgrade
+     */
     @Override
     public void updPicNumbers(SharedPreferences sharedPreferences, SoundMakerEntityEnum soundMakerEntityEnum) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -31,6 +37,12 @@ public class SaveGameHelper implements  SaveGameHelperInt{
         editor.commit();
     }
 
+    /**
+     * returns the number of pictures to load to quizScreen
+     * @param sharedPreferences
+     * @param soundMakerEntityEnum - which entity upgrade
+     * @return
+     */
     @Override
     public int getPicNumbers(SharedPreferences sharedPreferences, SoundMakerEntityEnum soundMakerEntityEnum) {
         int resultPickNum = START_WIN_COUNT_NUMBER;
@@ -38,33 +50,34 @@ public class SaveGameHelper implements  SaveGameHelperInt{
             case ANIMALS:
                 resultPickNum = sharedPreferences.getInt(PIC_NUM_ANIMALS_SH_PREF, 0);
                 if(resultPickNum > MAX_PICKS_NUMBER || resultPickNum < MIN_PICKS_NUMBER){
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    nullPicNumbers(sharedPreferences, soundMakerEntityEnum);
                     resultPickNum = MIN_PICKS_NUMBER;
-                    editor.putInt(PIC_NUM_ANIMALS_SH_PREF, resultPickNum);
-                    editor.commit();
                 }
                 break;
             case TRANSPORTS:
                 resultPickNum = sharedPreferences.getInt(PIC_NUM_TRANSPORTS_SH_PREF, 0);
                 if(resultPickNum > MAX_PICKS_NUMBER || resultPickNum < MIN_PICKS_NUMBER){
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    nullPicNumbers(sharedPreferences, soundMakerEntityEnum);
                     resultPickNum = MIN_PICKS_NUMBER;
-                    editor.putInt(PIC_NUM_TRANSPORTS_SH_PREF, resultPickNum);
-                    editor.commit();
                 }
         }
         return resultPickNum;
     }
 
+    /**
+     * puts the min number of pictures to load to quizScreen
+     * @param sharedPreferences
+     * @param soundMakerEntityEnum
+     */
     @Override
     public void nullPicNumbers(SharedPreferences sharedPreferences, SoundMakerEntityEnum soundMakerEntityEnum) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         switch (soundMakerEntityEnum){
             case ANIMALS:
-                editor.putInt(PIC_NUM_ANIMALS_SH_PREF, START_WIN_COUNT_NUMBER);
+                editor.putInt(PIC_NUM_ANIMALS_SH_PREF, MIN_PICKS_NUMBER);
                 break;
             case TRANSPORTS:
-                editor.putInt(PIC_NUM_TRANSPORTS_SH_PREF, START_WIN_COUNT_NUMBER);
+                editor.putInt(PIC_NUM_TRANSPORTS_SH_PREF, MIN_PICKS_NUMBER);
         }
         editor.commit();
     }

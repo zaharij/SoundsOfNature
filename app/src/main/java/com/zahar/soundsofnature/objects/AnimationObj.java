@@ -5,7 +5,8 @@ import android.widget.ImageView;
 
 import static com.zahar.soundsofnature.constants.ConstantsConfig.*;
 
-/**
+/** AnimationObj
+ * describes all program animation
  * Created by Zakhar on 02.01.2017.
  */
 
@@ -28,6 +29,11 @@ public class AnimationObj {
         view.startAnimation(rotateAnim);
     }
 
+    /**
+     * rotates given animation
+     * , the default degree number is 360 (you can change it in ConstantsConfig)
+     * @param view
+     */
     public static void rotationInfinity(ImageView view){
         int mCurrRotation = CURRENT_ROTATION_DEGREE_SPLASH_IMG;
         float fromRotation = mCurrRotation;

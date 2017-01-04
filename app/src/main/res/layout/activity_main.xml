@@ -10,7 +10,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/quiz_btn"
+        app:srcCompat="@drawable/quiz_on_click_btn"
         android:id="@+id/imageButtonQuiz"
         android:background="@android:drawable/menuitem_background"
         android:layout_marginRight="89dp"
@@ -31,7 +31,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/listening_btn_eng"
+        app:srcCompat="@drawable/listening_btn_onclick"
         android:id="@+id/imageButtonListening"
         tools:background="@android:drawable/list_selector_background"
         android:background="@android:drawable/list_selector_background"

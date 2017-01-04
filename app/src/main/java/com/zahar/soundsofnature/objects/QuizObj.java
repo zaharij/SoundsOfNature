@@ -13,7 +13,8 @@ import java.util.HashMap;
 
 import static com.zahar.soundsofnature.constants.ConstantsConfig.*;
 
-/**
+/** QuizObj
+ * Quiz describing
  * Created by Zakhar on 04.01.2017.
  */
 
@@ -37,7 +38,14 @@ public class QuizObj {
         return soundMakerMapToOutput;
     }
 
-
+    /**
+     * puts random entities to the quizScreen
+     * @param appCompatActivity - current activity
+     * @param onClickListener
+     * @param relativeLayout
+     * @param sharedPreferences
+     * @param soundMakerEntityEnum
+     */
     public void putRandomImages(AppCompatActivity appCompatActivity, View.OnClickListener onClickListener
             , RelativeLayout relativeLayout, SharedPreferences sharedPreferences, SoundMakerEntityEnum soundMakerEntityEnum){
         soundMakerMapToOutput = new HashMap<Integer, SoundMakerEntity>();
@@ -50,11 +58,20 @@ public class QuizObj {
         Squad.setPictures(appCompatActivity, onClickListener, relativeLayout, soundMakerMapToOutput, QUIZ_COLUMN_IMAGES_NUMBER, QUIZ_ROW_IMAGES_NUMBER);
     }
 
+    /**
+     * starts sound
+     * @param appCompatActivity
+     */
     public void startSound(AppCompatActivity appCompatActivity){
         int id = picNums[winId];
         Squad.setSound(appCompatActivity, winId, soundMakerMapToOutput);
     }
 
+    /**
+     * returns the result of playing
+     * @param id
+     * @return
+     */
     public boolean getResult(int id){
         if (id == winId){
             return true;
@@ -63,6 +80,15 @@ public class QuizObj {
         }
     }
 
+    /**
+     * counts how many times user wins
+     * , if count gets max number - calls the update method
+     * , returns the result if the picture numbers is increased
+     * @param sharedPreferences
+     * @param soundMakerEntityEnum
+     * @param isVin
+     * @return
+     */
     public boolean isVin(SharedPreferences sharedPreferences, SoundMakerEntityEnum soundMakerEntityEnum, boolean isVin){
         boolean result = false;
         if(isVin){
@@ -80,22 +106,35 @@ public class QuizObj {
         return result;
     }
 
+    /**
+     * returns the random entity
+     * , which sound to play
+     * @return - the id of entity
+     */
     private int getVinIdNumber(){
         int winId = Squad.getRandomToGivenNumber(ID_START_NUMBER, picNums.length - 1);
         return winId;
     }
 
+    /**
+     * returns the array of entity ids
+     * , which takes place in quiz
+     * @param sharedPreferences
+     * @param soundMakerEntityEnum
+     * @return the array of entities (int[])
+     */
     private int[] getPicturesNumbers(SharedPreferences sharedPreferences, SoundMakerEntityEnum soundMakerEntityEnum){
         int picNum = saveGameHelper.getPicNumbers(sharedPreferences, soundMakerEntityEnum);
         int[] picNums = new int[picNum];
-        boolean zeroIsIn = false;
+        boolean zeroIsIn = false;//if zero is in the array, because the default value in the array is zero
+
         start:for(int i = 0; i < picNum; i++){
             int number = Squad.getRandomToGivenNumber(ID_START_NUMBER, soundMakerMap.size() - 1);
-            if (number == 0){
+            if (number == 0){//if random number equals to zero - put it into array, and make sure that it number will be not repeated
                 zeroIsIn = true;
             }
             for(int j = 0; j < picNums.length; j++) {
-                if(zeroIsIn ? number == picNums[j] : number != 0 && number == picNums[j]){
+                if(zeroIsIn ? number == picNums[j] : number != 0 && number == picNums[j]){// if current random number is already in the array - continue
                     if (i > 0){
                         i--;
                     }

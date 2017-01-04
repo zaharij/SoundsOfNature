@@ -1,6 +1,7 @@
 package com.zahar.soundsofnature.entities;
 
-/**
+/** SoundMakerEntity
+ * describes all fields, the sames for transports and animals
  * Created by Zakhar on 02.01.2017.
  */
 

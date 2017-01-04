@@ -4,11 +4,11 @@ import com.zahar.soundsofnature.R;
 import com.zahar.soundsofnature.entities.Animal;
 import com.zahar.soundsofnature.entities.SoundMakerEntity;
 import com.zahar.soundsofnature.entities.Transport;
-import com.zahar.soundsofnature.enums.SoundMakerEntityEnum;
 
 import java.util.HashMap;
 
-/**
+/** ConstantsConfig
+ * program constants
  * Created by Zakhar on 01.01.2017.
  */
 
@@ -43,6 +43,7 @@ public class ConstantsConfig {
     public final static int COLUMN_IMAGES_NUMBER = 4;
     public final static int ID_START_NUMBER = 0;
     public final static int TEXT_SIZE_DEFAULT = 40;
+    public final static String BACK_BTN_COLOR = "#5F9EA0";
 
     public final static HashMap<Integer, SoundMakerEntity> ANIMALS_MAP = new HashMap<Integer, SoundMakerEntity>()
     {{

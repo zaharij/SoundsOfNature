@@ -6,7 +6,6 @@ import android.media.MediaPlayer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -14,19 +13,29 @@ import android.widget.RelativeLayout;
 import com.zahar.soundsofnature.entities.SoundMakerEntity;
 import com.zahar.soundsofnature.enums.SoundMakerEntityEnum;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
 
 import static com.zahar.soundsofnature.constants.ConstantsConfig.*;
 
-/**
+/** Squad
+ * commands, which are uses in program
  * Created by Zakhar on 03.01.2017.
  */
 
 public class Squad {
     private static MediaPlayer mediaPlayer;
 
+    /**
+     * sets pictures to the screen
+     *
+     * @param appCompatActivity
+     * @param onClickListener
+     * @param relativeLayout
+     * @param soundMakerMap - entities resource to use
+     * @param columnsNumber - the number of columns
+     * @param rowsNumber - the number of rows
+     */
     public static void setPictures(AppCompatActivity appCompatActivity, View.OnClickListener onClickListener
             , RelativeLayout relativeLayout, HashMap<Integer, SoundMakerEntity> soundMakerMap, int columnsNumber, int rowsNumber) {
 
@@ -37,7 +46,7 @@ public class Squad {
                 int viewId;
                 try{
                     viewId = soundMakerMap.get(idCount).getViewId();
-                } catch (NullPointerException e){
+                } catch (NullPointerException e){//if the number - rows*columns is greater than the number of entities
                     break;
                 }
                 ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(0);
@@ -62,6 +71,13 @@ public class Squad {
         }
     }
 
+    /**
+     * starts the sound of current entity
+     *
+     * @param appCompatActivity
+     * @param id - the entity id
+     * @param soundMakerMap - entity map (HashMap<Integer, SoundMakerEntity>)
+     */
     public static void setSound(AppCompatActivity appCompatActivity, int id, HashMap<Integer, SoundMakerEntity> soundMakerMap){
         mediaPlayer = MediaPlayer.create(appCompatActivity.getBaseContext()
                 , soundMakerMap.get(id).getSoundIdArr()[getRandomToGivenNumber(0, soundMakerMap.get(id).getSoundIdArr().length - 1)]);
@@ -80,6 +96,9 @@ public class Squad {
         });
     }
 
+    /**
+     * stops sound
+     */
     public static void stopSound(){
         try{
             mediaPlayer.stop();
@@ -90,6 +109,12 @@ public class Squad {
         }
     }
 
+    /**
+     * returns the map of entities, which user works with
+     *
+     * @param soundMakerEntityEnum the name of entity map (enum)
+     * @return - map of entities (HashMap<Integer, SoundMakerEntity>)
+     */
     public static HashMap<Integer, SoundMakerEntity> getCurrentSoundMakerMap(SoundMakerEntityEnum soundMakerEntityEnum) {
         HashMap<Integer, SoundMakerEntity> soundMakerMap;
 
@@ -106,18 +131,32 @@ public class Squad {
         return soundMakerMap;
     }
 
+    /**
+     * returns the width of the user's screen
+     * @return - width (int)
+     */
     private static int getScreenWidth() {
         return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
 
+    /**
+     * returns the height of the user's screen
+     * @return height (int)
+     */
     private static int getScreenHeight() {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
+    /**
+     * finds the appropriate size for the entity picture
+     * @param rowImagesNumber
+     * @param columnImagesNumber
+     * @return
+     */
     private static int[] appropriateImageSize(int rowImagesNumber, int columnImagesNumber){
         int height;
         if (rowImagesNumber > 2){
-            height = (getScreenHeight() / (columnImagesNumber)) * 70 / 100;
+            height = (getScreenHeight() / (columnImagesNumber)) * 70 / 100;// means 70%
         } else {
             height = (getScreenHeight() / (columnImagesNumber)) * 90 / 100;
         }
@@ -128,6 +167,7 @@ public class Squad {
 
     /**
      * returns the random number in given range
+     *
      * @param minNumber - min number
      * @param maxNumber - max number
      * @return - random number (int)
