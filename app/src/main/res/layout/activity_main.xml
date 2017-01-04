@@ -10,20 +10,6 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/listening_btn_eng"
-        android:layout_marginLeft="105dp"
-        android:layout_marginStart="105dp"
-        android:id="@+id/imageButtonListening"
-        tools:background="@android:drawable/list_selector_background"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@android:drawable/list_selector_background"
-        android:clickable="false"
-        android:layout_centerVertical="true" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:srcCompat="@drawable/quiz_btn"
         android:id="@+id/imageButtonQuiz"
         android:background="@android:drawable/menuitem_background"
@@ -32,5 +18,26 @@
         android:layout_alignTop="@+id/imageButtonListening"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/imageViewLogo" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/listening_btn_eng"
+        android:id="@+id/imageButtonListening"
+        tools:background="@android:drawable/list_selector_background"
+        android:background="@android:drawable/list_selector_background"
+        android:clickable="false"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/imageViewLogo"
+        android:layout_toStartOf="@+id/imageViewLogo" />
 
 </RelativeLayout>

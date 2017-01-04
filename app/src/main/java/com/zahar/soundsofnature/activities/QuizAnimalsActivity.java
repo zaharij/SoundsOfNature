@@ -59,7 +59,7 @@ public class QuizAnimalsActivity extends AppCompatActivity {
                 } else {
                     quiz.isVin(sharedPreferences, SoundMakerEntityEnum.ANIMALS, false);
                     textView.setTextColor(Color.RED);
-                    textView.setText(quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getName());
+                    textView.setText(NOT_RIGHT_MESSAGE + "\n" + quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getName());
                 }
             }
         };
