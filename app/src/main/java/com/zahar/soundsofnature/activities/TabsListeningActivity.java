@@ -26,12 +26,12 @@ public class TabsListeningActivity extends TabActivity {
         TabHost tabHost = getTabHost();
         TabHost.TabSpec tabSpec;
         tabSpec = tabHost.newTabSpec(SoundMakerEntityEnum.ANIMALS.toString());
-        tabSpec.setIndicator("ANIMALS");
+        tabSpec.setIndicator(SoundMakerEntityEnum.ANIMALS.toString());
         tabSpec.setContent(new Intent(this, ListeningAnimalsActivity.class));
         tabHost.addTab(tabSpec);
 
         tabSpec = tabHost.newTabSpec(SoundMakerEntityEnum.TRANSPORTS.toString());
-        tabSpec.setIndicator("TRANSPORTS");
+        tabSpec.setIndicator(SoundMakerEntityEnum.TRANSPORTS.toString());
         tabSpec.setContent(new Intent(this, ListeningTransportsActivity.class));
         tabHost.addTab(tabSpec);
 

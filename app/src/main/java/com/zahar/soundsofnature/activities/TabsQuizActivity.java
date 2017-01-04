@@ -26,12 +26,12 @@ public class TabsQuizActivity extends TabActivity {
         TabHost tabHost = getTabHost();
         TabHost.TabSpec tabSpec;
         tabSpec = tabHost.newTabSpec(SoundMakerEntityEnum.ANIMALS.toString());
-        tabSpec.setIndicator("ANIMALS");
+        tabSpec.setIndicator(SoundMakerEntityEnum.ANIMALS.toString());
         tabSpec.setContent(new Intent(this, QuizAnimalsActivity.class));
         tabHost.addTab(tabSpec);
 
         tabSpec = tabHost.newTabSpec(SoundMakerEntityEnum.TRANSPORTS.toString());
-        tabSpec.setIndicator("TRANSPORTS");
+        tabSpec.setIndicator(SoundMakerEntityEnum.TRANSPORTS.toString());
         tabSpec.setContent(new Intent(this, QuizTransportsActivity.class));
         tabHost.addTab(tabSpec);
 
@@ -39,7 +39,6 @@ public class TabsQuizActivity extends TabActivity {
             @Override
             public void onTabChanged(String s) {
                 Squad.stopSound();
-                
             }
         });
     }
