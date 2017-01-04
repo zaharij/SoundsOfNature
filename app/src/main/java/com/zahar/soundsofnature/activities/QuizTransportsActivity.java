@@ -67,18 +67,7 @@ public class QuizTransportsActivity extends AppCompatActivity {
                     }
                 } else {
                     quiz.isVin(sharedPreferences, SoundMakerEntityEnum.TRANSPORTS, false);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(QuizTransportsActivity.this);
-                    builder.setTitle(THATS_RIGHT_MESSAGE)
-                            .setIcon(quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getViewId())
-                            .setCancelable(false)
-                            .setNegativeButton(OK_BUTTON_MESSAGE,
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                        }
-                                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
+                    Squad.dialogNotRight(QuizTransportsActivity.this, quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getViewId());
                 }
             }
         };

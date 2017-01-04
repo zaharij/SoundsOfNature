@@ -214,4 +214,24 @@ public class Squad {
         appCompatActivity.startActivity(homeIntent);
         appCompatActivity.finish();
     }
+
+    /**
+     * returns the right variant
+     * @param appCompatActivity
+     * @param id
+     */
+    public static void dialogNotRight(final AppCompatActivity appCompatActivity, int id){
+        AlertDialog.Builder builder = new AlertDialog.Builder(appCompatActivity);
+        builder.setTitle(THATS_RIGHT_MESSAGE)
+                .setIcon(id)
+                .setCancelable(false)
+                .setNegativeButton(OK_BUTTON_MESSAGE,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 }
