@@ -1,6 +1,5 @@
 package com.zahar.soundsofnature.activities;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -11,6 +10,7 @@ import android.widget.ImageView;
 
 import com.zahar.soundsofnature.R;
 import com.zahar.soundsofnature.objects.AnimationObj;
+import com.zahar.soundsofnature.objects.Squad;
 
 import static com.zahar.soundsofnature.constants.ConstantsConfig.*;
 
@@ -50,9 +50,7 @@ public class WinActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent homeIntent = new Intent(WinActivity.this, MainActivity.class);
-                startActivity(homeIntent);
-                finish();
+                Squad.returnMainActivity(WinActivity.this);
             }
         }, SPLASH_TIME_OUT);
     }

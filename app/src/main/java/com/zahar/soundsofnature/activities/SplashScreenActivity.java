@@ -1,6 +1,5 @@
 package com.zahar.soundsofnature.activities;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 
 import com.zahar.soundsofnature.R;
 import com.zahar.soundsofnature.objects.AnimationObj;
+import com.zahar.soundsofnature.objects.Squad;
 
 import static com.zahar.soundsofnature.constants.ConstantsConfig.*;
 
@@ -40,9 +40,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent homeIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(homeIntent);
-                finish();
+                Squad.returnMainActivity(SplashScreenActivity.this);
             }
         }, SPLASH_TIME_OUT);
     }
