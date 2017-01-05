@@ -42,7 +42,7 @@ public class ConstantsConfig {
     public final static int ROW_IMAGES_NUMBER = 3;
     public final static int COLUMN_IMAGES_NUMBER = 4;
     public final static int ID_START_NUMBER = 0;
-    public final static int TEXT_SIZE_DEFAULT = 40;
+    public final static int TEXT_SIZE_DEFAULT = 30;
     public final static String BACK_BTN_COLOR = "#5F9EA0";
 
     public final static HashMap<Integer, SoundMakerEntity> ANIMALS_MAP = new HashMap<Integer, SoundMakerEntity>()
@@ -101,7 +101,7 @@ public class ConstantsConfig {
 
     public final static String YOU_WIN_MESSAGE = "You win!";
     public final static String OK_BUTTON_MESSAGE = "OK";
-    public final static String NOT_RIGHT_MESSAGE = "No, it is ";
+    public final static String NOT_RIGHT_MESSAGE = "No, I am ";
 
     public final static int DIALOGUE_IMAGE_WIDTH = 300;
     public final static int DIALOGUE_IMAGE_HEIGHT = 300;
