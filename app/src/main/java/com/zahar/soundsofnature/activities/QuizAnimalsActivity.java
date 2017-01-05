@@ -75,7 +75,7 @@ public class QuizAnimalsActivity extends AppCompatActivity {
                 } else {
                     quiz.isVin(sharedPreferences, SoundMakerEntityEnum.ANIMALS, false);
                     textView.setText(NULL_MESSAGE);
-
+                    quiz.startSound(QuizAnimalsActivity.this);
                     Drawable drawable = null;
                     drawable = QuizAnimalsActivity.this.getResources().getDrawable(quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getViewId());
                     Squad.dialogNotRight(QuizAnimalsActivity.this, drawable, quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getName());

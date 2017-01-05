@@ -70,7 +70,7 @@ public class QuizTransportsActivity extends AppCompatActivity {
                 } else {
                     quiz.isVin(sharedPreferences, SoundMakerEntityEnum.TRANSPORTS, false);
                     textView.setText(NULL_MESSAGE);
-
+                    quiz.startSound(QuizTransportsActivity.this);
                     Drawable drawable = null;
                     drawable = QuizTransportsActivity.this.getResources().getDrawable(quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getViewId());
                     Squad.dialogNotRight(QuizTransportsActivity.this, drawable, quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getName());
