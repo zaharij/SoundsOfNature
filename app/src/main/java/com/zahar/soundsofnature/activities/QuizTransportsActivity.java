@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -61,13 +62,18 @@ public class QuizTransportsActivity extends AppCompatActivity {
                         gameBoard.removeViewsInLayout(REMOVE_QUIZ_IMAGES_START_NUMBER, quiz.getPicNumsLength());
                         startQuiz(this);
                         textView.setTextColor(Color.GREEN);
-                        textView.setText(RIGHT_MESSAGE);
+                        textView.setText(Squad.generateRightMessage());
+                        Squad.nullRightText(textView);
                     } else {
                         Squad.getDialogWinWindow(QuizTransportsActivity.this);
                     }
                 } else {
                     quiz.isVin(sharedPreferences, SoundMakerEntityEnum.TRANSPORTS, false);
-                    Squad.dialogNotRight(QuizTransportsActivity.this, quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getViewId());
+                    textView.setText(NULL_MESSAGE);
+
+                    Drawable drawable = null;
+                    drawable = QuizTransportsActivity.this.getResources().getDrawable(quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getViewId());
+                    Squad.dialogNotRight(QuizTransportsActivity.this, drawable, quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getName());
                 }
             }
         };

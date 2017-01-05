@@ -91,11 +91,18 @@ public class ConstantsConfig {
     public final static int MIN_PICKS_NUMBER = 2;
 
     public final static String RIGHT_MESSAGE = "Right!";
-    public final static String NOT_RIGHT_MESSAGE = "No, this is ";
+    public final static String EXCELLENT_MESSAGE = "Excellent!";
+    public final static String BRILLIANT_MESSAGE = "Brilliant!";
+    public final static String NULL_MESSAGE = "";
+
+    public final static String[] RIGHT_MESSAGE_ARRAY = new String[]{RIGHT_MESSAGE, EXCELLENT_MESSAGE, BRILLIANT_MESSAGE};
 
     //DialogScreen constants
 
     public final static String YOU_WIN_MESSAGE = "You win!";
     public final static String OK_BUTTON_MESSAGE = "OK";
-    public final static String THATS_RIGHT_MESSAGE = "!!!";
+    public final static String NOT_RIGHT_MESSAGE = "No, it is ";
+
+    public final static int DIALOGUE_IMAGE_WIDTH = 300;
+    public final static int DIALOGUE_IMAGE_HEIGHT = 300;
 }

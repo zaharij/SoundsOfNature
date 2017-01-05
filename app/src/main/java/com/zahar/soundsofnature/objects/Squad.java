@@ -4,21 +4,31 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.ImageWriter;
 import android.media.MediaPlayer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.zahar.soundsofnature.R;
 import com.zahar.soundsofnature.activities.MainActivity;
-import com.zahar.soundsofnature.activities.QuizTransportsActivity;
 import com.zahar.soundsofnature.activities.WinActivity;
 import com.zahar.soundsofnature.entities.SoundMakerEntity;
 import com.zahar.soundsofnature.enums.SoundMakerEntityEnum;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -114,6 +124,19 @@ public class Squad {
         } catch (IllegalStateException ex){
             return;
         }
+    }
+
+    /**
+     * after next sound stops, set null text to the text view
+     * @param textView
+     */
+    public static void nullRightText(final TextView textView){
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                textView.setText(NULL_MESSAGE);
+            }
+        });
     }
 
     /**
@@ -220,12 +243,15 @@ public class Squad {
     /**
      * returns the right variant
      * @param appCompatActivity
-     * @param id
+     * @param drawableImg
      */
-    public static void dialogNotRight(final AppCompatActivity appCompatActivity, int id){
+    public static void dialogNotRight(final AppCompatActivity appCompatActivity, Drawable drawableImg, String entityName){
+        SpannableString titleMessage = new SpannableString(NOT_RIGHT_MESSAGE + entityName);
+        titleMessage.setSpan(new ForegroundColorSpan(Color.RED), 0, titleMessage.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        drawableImg = resize(appCompatActivity, drawableImg);
         AlertDialog.Builder builder = new AlertDialog.Builder(appCompatActivity);
-        builder.setTitle(THATS_RIGHT_MESSAGE)
-                .setIcon(id)
+        builder.setTitle(titleMessage)
+                .setIcon(drawableImg)
                 .setCancelable(false)
                 .setNegativeButton(OK_BUTTON_MESSAGE,
                         new DialogInterface.OnClickListener() {
@@ -235,5 +261,26 @@ public class Squad {
                         });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    /**
+     * resizes the images
+     * @param appCompatActivity
+     * @param image
+     * @return resized image (Drawable)
+     */
+    private static Drawable resize(AppCompatActivity appCompatActivity, Drawable image) {
+        Bitmap b = ((BitmapDrawable)image).getBitmap();
+        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, DIALOGUE_IMAGE_WIDTH, DIALOGUE_IMAGE_HEIGHT, false);
+        return new BitmapDrawable(appCompatActivity.getResources(), bitmapResized);
+    }
+
+    /**
+     * returns the random message
+     * @return
+     */
+    public static String generateRightMessage(){
+        int messageNum = getRandomToGivenNumber(0, RIGHT_MESSAGE_ARRAY.length - 1);
+        return RIGHT_MESSAGE_ARRAY[messageNum];
     }
 }

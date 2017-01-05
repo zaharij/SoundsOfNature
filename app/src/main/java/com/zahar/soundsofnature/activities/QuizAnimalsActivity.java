@@ -3,11 +3,16 @@ package com.zahar.soundsofnature.activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -62,13 +67,18 @@ public class QuizAnimalsActivity extends AppCompatActivity {
                         gameBoard.removeViewsInLayout(REMOVE_QUIZ_IMAGES_START_NUMBER, quiz.getPicNumsLength());
                         startQuiz(this);
                         textView.setTextColor(Color.GREEN);
-                        textView.setText(RIGHT_MESSAGE);
+                        textView.setText(Squad.generateRightMessage());
+                        Squad.nullRightText(textView);
                     } else {
                         Squad.getDialogWinWindow(QuizAnimalsActivity.this);
                     }
                 } else {
                     quiz.isVin(sharedPreferences, SoundMakerEntityEnum.ANIMALS, false);
-                    Squad.dialogNotRight(QuizAnimalsActivity.this, quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getViewId());
+                    textView.setText(NULL_MESSAGE);
+
+                    Drawable drawable = null;
+                    drawable = QuizAnimalsActivity.this.getResources().getDrawable(quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getViewId());
+                    Squad.dialogNotRight(QuizAnimalsActivity.this, drawable, quiz.getSoundMakerMapToOutput().get(quiz.getWinId()).getName());
                 }
             }
         };
